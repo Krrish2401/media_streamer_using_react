@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
   padding: 0 2rem;
   height: 64px;
   background: var(--bg-secondary);
@@ -17,6 +18,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .logo-text {
@@ -29,10 +31,67 @@
   letter-spacing: -0.5px;
 }
 
+/* ── Search Bar ── */
+.search-bar {
+  flex: 1;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.search-input {
+  flex: 1;
+  height: 40px;
+  padding: 0 1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-right: none;
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+}
+
+.search-button {
+  height: 40px;
+  padding: 0 1.25rem;
+  background: var(--bg-hover);
+  border: 1px solid var(--border);
+  border-left: none;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.search-button:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.search-input:focus + .search-button {
+  border-color: var(--accent);
+}
+
 .nav-links {
   display: flex;
   gap: 1.5rem;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .nav-link {
@@ -61,9 +120,41 @@
 @media (max-width: 768px) {
   .navbar {
     padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  .logo-text {
+    font-size: 1.2rem;
+  }
+
+  .search-bar {
+    max-width: 300px;
+  }
+
+  .search-input {
+    font-size: 0.85rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
   }
 
   .main-content {
     padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 0.75rem 1rem;
+  }
+
+  .search-bar {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0.5rem;
   }
 }
