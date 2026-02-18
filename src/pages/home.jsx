@@ -21,7 +21,6 @@ export function Home() {
                     `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&regionCode=US&maxResults=12&key=${apiKey}`
                 )
                 const data = await res.json()
-
                 if (!data.items) {
                     throw new Error(data.error?.message || 'Failed to fetch videos')
                 }

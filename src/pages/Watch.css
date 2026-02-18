@@ -135,6 +135,110 @@
   color: var(--text-secondary);
 }
 
+/* ── Recommendations Section ── */
+.recommendations-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.recommendations-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+  padding: 0 0.5rem;
+}
+
+.recs-loading {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.no-recs {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 2rem;
+  font-size: 0.9rem;
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  padding: 0 0.5rem;
+}
+
+.rec-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+}
+
+.rec-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.rec-thumb-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--skeleton-bg);
+}
+
+.rec-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.rec-card:hover .rec-thumbnail {
+  transform: scale(1.05);
+}
+
+.rec-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.rec-card:hover .rec-overlay {
+  opacity: 1;
+}
+
+.rec-info {
+  padding: 0.875rem;
+}
+
+.rec-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0.375rem;
+}
+
+.rec-channel {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .watch-title {
@@ -143,5 +247,13 @@
 
   .watch-meta {
     font-size: 0.8rem;
+  }
+
+  .recommendations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recommendations-title {
+    font-size: 1.1rem;
   }
 }
