@@ -3,6 +3,7 @@ import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import { Home } from './pages/home.jsx'
 import { Watch } from './pages/watch.jsx'
 import { Search } from './pages/search.jsx'
+import { WatchHistory } from './pages/wh.jsx'
 import './App.css'
 
 function App() {
@@ -87,6 +88,7 @@ function App() {
         </div>
         <nav className="nav-links">
           <Link to="/" className="nav-link">Home</Link>
+          <Link to="/history" className="nav-link">History</Link>
         </nav>
       </header>
       <main className="main-content">
@@ -94,6 +96,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/watch/:id" element={<Watch />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/history" element={<WatchHistory />} />
         </Routes>
       </main>
     </div>

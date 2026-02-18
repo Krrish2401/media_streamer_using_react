@@ -29,7 +29,7 @@ export function Watch() {
                 console.log(data)
                 if (data.items && data.items.length > 0) {
                     const v = data.items[0]
-                    setVideo({
+                    const videoData = {
                         id: v.id,
                         title: v.snippet.title,
                         channel: v.snippet.channelTitle,
@@ -38,7 +38,11 @@ export function Watch() {
                         likes: v.statistics?.likeCount,
                         publishedAt: new Date(v.snippet.publishedAt).toLocaleDateString(),
                         embedUrl: `https://www.youtube.com/embed/${v.id}`,
-                    })
+                        thumbnail: v.snippet.thumbnails?.medium?.url || v.snippet.thumbnails?.default?.url,
+                        watchedAt: new Date().toISOString(),
+                    }
+                    setVideo(videoData)
+                    saveToWatchHistory(videoData)
                 }
             } catch (err) {
                 console.error('Error loading video:', err)
@@ -49,6 +53,19 @@ export function Watch() {
 
         fetchVideo()
     }, [id])
+
+    const saveToWatchHistory = (videoData) => {
+        const history = JSON.parse(localStorage.getItem('watchHistory') || '[]')
+        const filtered = history.filter(item => item.id !== videoData.id)
+        const updated = [{
+            id: videoData.id,
+            title: videoData.title,
+            channel: videoData.channel,
+            thumbnail: videoData.thumbnail,
+            watchedAt: videoData.watchedAt,
+        }, ...filtered].slice(0, 50) // Keep last 50 watched videos
+        localStorage.setItem('watchHistory', JSON.stringify(updated))
+    }
 
     if (loading) {
         return (
